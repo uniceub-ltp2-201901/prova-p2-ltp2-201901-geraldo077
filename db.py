@@ -4,7 +4,7 @@ def config(app):
     app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
     app.config['MYSQL_DATABASE_DB'] =  'localhost_ly'
 
-def get_db(mysql):
+def get_db(mysql): 
     conn = mysql.connect()
     cursor = conn.cursor()
 
