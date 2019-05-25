@@ -52,19 +52,17 @@ def update():
 def link_encurtado(idnumber):
     conn, cursor = get_db(mysql)
 
-    link = get_link(cursor, idnumber)
+    link = get_link(cursor, idnumber)[0]
     if link == None:
         return render_template('index.html', error_msg="Id não registrado. Cadastre seu site agora")
-    print(link)
     acesscount = get_acesscount(cursor, idnumber)[0]
     acesscount = acesscount + 1
-    print(acesscount)
     update_acesscount(cursor, conn, idnumber, acesscount)
 
     cursor.close()
     conn.close()
 
-    return render_template('encurtado.html', link=link[0])
+    return render_template('encurtado.html', link=link)
 
 if __name__ == '__main__':
     app.run(debug=True)
